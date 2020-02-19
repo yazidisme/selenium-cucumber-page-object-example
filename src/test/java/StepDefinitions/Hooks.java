@@ -23,7 +23,7 @@ public class Hooks {
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized", "--headless", "--disable-gpu");
+        options.addArguments("--headless", "--window-size=1440,768", "--disable-gpu");
         driver = new ChromeDriver(options);
         PropertiesReader propertiesReader = new PropertiesReader();
         driver.manage().timeouts().implicitlyWait(propertiesReader.getTimeout(), TimeUnit.SECONDS);
