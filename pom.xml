@@ -37,6 +37,12 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,9 +75,6 @@
                             <projectName>Cucumber Page Object Example</projectName>
                             <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
                             <cucumberOutput>target/cucumber-reports/CucumberTestReport.json</cucumberOutput>
-                            <buildNumber>1</buildNumber>
-                            <parallelTesting>false</parallelTesting>
-                            <checkBuildResult>false</checkBuildResult>
                         </configuration>
                     </execution>
                 </executions>

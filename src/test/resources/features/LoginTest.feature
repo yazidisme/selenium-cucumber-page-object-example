@@ -1,18 +1,18 @@
-Feature: Credential Tests
+Feature: As a user, I want to create credentials
 
-  @ValidCase
-  Scenario: Successful login
-    Given Login page
-    When Submit "YOUR_VALID@EMAIL.COM" and "YOUR_V4L1D_Password"
-    Then Login success
+  @ValidCase @SomeTags
+  Scenario: Successful login using valid account
+    Given Login form in login page
+    When Submit email using "your_email" and password using "your_password"
+    Then Success login to home page with displaying account button
 
-  @InvalidCase
-  Scenario Outline: Failed login
-    Given Login page
-    When Submit "<email>" and "<password>"
-    Then Login failed
+  @InvalidCase @SomeTags
+  Scenario Outline: Failed login using invalid account
+    Given Login form in login page
+    When Submit email using "<email>" and password using "<password>"
+    Then Login failed with displaying error message
     Examples:
-    | email             | password |
-    | qwert             | 123456   |
-    |                   | 1234qw   |
-    | akutest@email.com |          |
+      | email             | password |
+      | qwert             | 123456   |
+      |                   | 1234qw   |
+      | akutest@email.com |          |

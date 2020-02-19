@@ -2,64 +2,55 @@ package StepDefinitions;
 
 import PageObjects.HomePage;
 import PageObjects.LoginPage;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import Utilities.PropertiesReader;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginSteps {
 
-    WebDriver driver;
+    private WebDriver driver = Hooks.driver;
+    private WebDriverWait wait;
 
-    @Before
-    public void openBrowser() {
+    public LoginSteps() throws Exception {
 
-        Setup openBrowser = new Setup();
-        driver = openBrowser.goToUrl();
+        PropertiesReader propertiesReader = new PropertiesReader();
+        this.wait = new WebDriverWait(driver, propertiesReader.getTimeout());
     }
 
-    @After
-    public void quitBrowser() {
 
-        driver.quit();
-    }
-
-    @Given("Login page")
+    @Given("Login form in login page")
     public void loginPage() {
 
-        HomePage home = new HomePage(driver);
-        home.masukButton.isDisplayed();
-        home.daftarButton.isDisplayed();
-        home.masukButton.isEnabled();
-        home.masukButton.click();
+        HomePage home = new HomePage(driver, wait);
+        home.homePageIsDisplayed();
+        home.clickLoginButton();
     }
 
-    @When("Submit \"(.*)\" and \"(.*)\"$")
+    @When("Submit email using \"(.*)\" and password using \"(.*)\"")
     public void submitEmailPassword(String email, String password) {
 
-        LoginPage login = new LoginPage(driver);
-        login.emailField.isDisplayed();
-        login.passwordField.isDisplayed();
-        login.emailField.sendKeys(email);
-        login.passwordField.sendKeys(password);
-        login.signInButton.isEnabled();
-        login.signInButton.click();
+        LoginPage login = new LoginPage(driver, wait);
+        login.loginPageIsDisplayed();
+        login.fillEmailData(email);
+        login.fillPasswordData(password);
+        login.clickSignInButton();
     }
 
-    @Then("Login success")
-    public void loginSuccess() {
+    @Then("Success login to home page with displaying account button")
+    public void successLogin() {
 
-        HomePage home = new HomePage(driver);
-        Assert.assertEquals(home.haloHeader.isDisplayed(), true);
+        HomePage home = new HomePage(driver, wait);
+        Assert.assertTrue(home.homePageAfterLoginIsDisplayed());
     }
 
-    @Then("Login failed")
+    @Then("Login failed with displaying error message")
     public void loginFailed() {
 
-        LoginPage login = new LoginPage(driver);
-        Assert.assertEquals(login.messageError.isDisplayed(), true);
+        LoginPage login = new LoginPage(driver, wait);
+        Assert.assertTrue(login.errorMessageIsDisplayed());
     }
 }
