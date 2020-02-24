@@ -15,7 +15,7 @@ Test Automation using **Cucumber**, **JUnit**, **Maven**, and **Java Language** 
         ```
     * Set the Java paths in your .bash_profile file
         ```
-        export JAVA_HOME=/Library/Java/JavaVirtualMachines/JDK_VERSION_FOLDER/Contents/Home
+        export JAVA_HOME=/Library/Java/JavaVirtualMachines/{JDK_VERSION_FOLDER}/Contents/Home
         export PATH=$PATH:$JAVA_HOME/bin
         ```
     * Save and exit your .bash_profile
@@ -44,7 +44,7 @@ Test Automation using **Cucumber**, **JUnit**, **Maven**, and **Java Language** 
 * Adding maven to the environment path
 * Add path variable to .bash_profile file
     ```
-    export M2_HOME=/your_directory/apache-maven-3.6.2
+    export M2_HOME=/{YOUR_DIRECTORY}/apache-maven-{YOURVERSION}
     export PATH=$PATH:$M2_HOME/bin
     ```
 * Verify your maven installation using `mvn -version` in your Terminal
