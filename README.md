@@ -44,8 +44,8 @@ Test Automation using **Cucumber**, **JUnit**, **Maven**, and **Java Language** 
 * Adding maven to the environment path
 * Add path variable to .bash_profile file
     ```
-    export M2_HOME=/{YOUR_DIRECTORY}/apache-maven-{YOURVERSION}
-    export PATH=$PATH:$M2_HOME/bin
+    export HOME=/{YOUR_DIRECTORY}/apache-maven-{YOURVERSION}
+    export PATH=$PATH:$HOME/bin
     ```
 * Verify your maven installation using `mvn -version` in your Terminal
 * See the output of [Maven version](https://prnt.sc/pvps0n)
